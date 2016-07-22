@@ -1,0 +1,103 @@
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: black;
+  margin: 0;
+  font-family: monospace;
+  font-size: 2em
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+}
+
+.title {
+  display: flex;
+  font-size: 3em;
+  font-family: sans-serif;
+  font-weight: bolder;
+  color: white;
+  min-height: 150px;
+  background-color: rgb(69, 59, 68);
+  padding: 10px;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.word {
+  display: flex;
+  background-color: grey;
+  font-size: 1em;
+}
+
+input {
+  display: flex;
+  flex: 1;
+  max-width: 100%;
+  padding: 10px;
+  font-size: 4em;
+  font-variant: small-caps;
+  color: rgb(52, 31, 74);
+}
+
+.game {
+  display: flex;
+  background-color: pink;
+  flex: 1 1 auto;;
+}
+
+.Grid {
+  display: flex;
+  flex-direction: row;
+  flex: 5;
+  font-size: 4em;
+  flex-wrap: wrap;
+  color: rgb(96, 96, 91);
+}
+
+.Grid-cell {
+  display: flex;
+  flex: 1;
+  border-style: solid;
+  border-width: thin;
+  border-color: white;
+  justify-content: center;
+  min-width: 30%;
+  background-color: rgb(50, 57, 61);
+}
+
+.Grid-cell:hover {
+  background-color: rgb(44, 55, 61);
+  transform: scale(1.1);
+}
+
+.image {
+  display: flex;
+  background: white;
+  flex: 3;
+  font-variant: small-caps;
+  font-size: 5em;
+  color: rgb(74, 67, 78);
+  align-items: center;
+  padding: 80px;
+}
+
+.lines {
+  display: flex;
+  padding: 10px;
+  min-height: 10%;
+  font-size: 3em;
+  background: rgb(74, 67, 78);
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  display: flex;
+  background-color: green;
+}
