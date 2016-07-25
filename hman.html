@@ -4,15 +4,20 @@
   <meta charset="utf-8">
   <title>Hang the hangman</title>
   <link rel="stylesheet" type="text/css" href="hman.css">
-  <link href="https://fonts.googleapis.com/css?family=Geostar+Fill|Share+Tech+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="hman.js"></script>
 </head>
 
-<body>
+<body class="menu" class="menu-open">
   <header>
+    <div class="menu-side">
+      this is a side menu
+    </div>
+
     <section class='title'>
-      Hang the Hangman...
+      <span>Hang the Hangman...</span>
+      <a href="#" class="menu-toggle">&#9776</a>
     </section>
     <section class='word'>
         <input class="word_to_guess" type="text" name="word" value="" placeholder="type word"autofocus/>

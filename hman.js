@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+  $('.menu-toggle').bind('click', function() {
+      $('body').toggleClass('menu-open')
+      return false;
+  });
+
   var error_count = 0;
   var used_letters = [];
   var index_chosen_letter= [];

@@ -12,20 +12,62 @@ body {
 header {
   display: flex;
   flex-direction: column;
-  background-color: green;
+  background-color:rgb(69, 59, 68);
+}
+
+.menu {
+  overflow-x: hidden;
+  /*position: relative;*/
+  left: 0;
+}
+
+.menu-open {
+  left: 631px;
+}
+
+.menu-open .menu-side {
+  left: 0;
+  background-color: rgba(42, 26, 41, 0.96);
+}
+
+.menu-toggle {
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.menu-side,
+.menu {
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  transition: left 0.5s ease;
+}
+
+.menu-side {
+  background-color: #333;
+  border-right: 1px solid #000;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: -631px;
+  width: 610px;
+  height: 100%;
+  padding: 10px;
+  background-color: rgba(62, 35, 60, 0.96);
 }
 
 .title {
   display: flex;
-  font-size: 3em;
-  font-family: sans-serif;
-  font-weight: bolder;
+  font-size: 2em;
   color: white;
-  min-height: 150px;
+  min-height: 120px;
   background-color: rgb(69, 59, 68);
-  padding: 10px;
-  justify-content: flex-start;
+  padding-left: 10px;;
+  justify-content: space-between;;
   align-items: flex-end;
+  font-family: 'Pacifico', cursive;
 }
 
 .word {
@@ -39,7 +81,7 @@ input {
   flex: 1;
   max-width: 100%;
   padding: 10px;
-  font-size: 4em;
+  font-size: 3em;
   font-variant: small-caps;
   color: rgb(52, 31, 74);
 }
