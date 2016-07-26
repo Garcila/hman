@@ -130,9 +130,10 @@ input {
 
 .lines {
   display: flex;
+  flex-wrap: nowrap;
   padding: 10px;
   min-height: 10%;
-  font-size: 3em;
+  font-size: 2.5em;
   background: rgb(74, 67, 78);
   color: white;
   justify-content: center;
