@@ -5,14 +5,16 @@ var index_chosen_letter= [];
 var won = 0;
 var lost = 0;
 var word_computer_generated;
-var game_type = 0;
+var game_type = 'friend';
 
-function rand() {
-  return Math.floor(Math.random()*(7-3+1)+3);
+
+function rand(minimum_letters, maximum_letters) {
+  return Math.floor(Math.random()*(maximum_letters-minimum_letters+1)+minimum_letters);
 }
+
 //function to get random word from API.  AI game
 function RandomWord() {
-  var random_word_lenght = rand();
+  var random_word_lenght = rand(7,3);
   var requestStr = "http://randomword.setgetgo.com/get.php?len=" + random_word_lenght;
 
   $.ajax({
@@ -31,43 +33,92 @@ function RandomWordComplete(data) {
   getLetter();
 }
 
-aiOrHuman();
 
 $(document).ready(function(){
-  if(game_type === 0) {
-    $('.word_to_guess').hide();
-  }
-})
+  getWord();
 
-  function aiOrHuman() {
-    if(game_type === 0) {
-      RandomWord();
-    } else {
-      $('.word_to_guess').show();
-      getWord();
-    }
-  }
-// })
+  //function to get access Big Huge Thesaurus
+  $('.hint').bind('click', function thesaurus() {
+    $.ajax({
+      type: "GET",
+      url: "http://words.bighugelabs.com/api/2/583adec71311cc870422e3e327d9b364/" + word + "/json",
+      dataType: "json"
+    }).done(function (json) {
+      $('.hints').empty();
+      if(json.hasOwnProperty('noun')) {
+        $('.hints').append(json.noun.syn[rand(1,5)]);
+      } else if(json.hasOwnProperty('verb')) {
+        $('.hints').append(json.verb.syn[rand(1,5)]);
+      } else if(json.hasOwnProperty('adverb')) {
+        $('.hints').append(json.adverb.syn[rand(1,5)]);
+      } else if(json.hasOwnProperty('adjective')) {
+        $('.hints').append(json.adjective.syn[rand(1,5)]);
+      }
+    }).fail(function(f) {
+      $('.hints').append(" 404");  //if the thesaurus, as it often does, has no synonym, append a friendly 404
+    })
+  })
 
   //reveals or hides side menu
   $('.menu-toggle').bind('click', function() {
-      $('body').toggleClass('menu-open')
-      return false;
+    $('body').toggleClass('menu-open')
+    return false;
   });
 
-  function getWord() {
-    $('.word_to_guess').off().on('keypress', function(e) {
-      if(e.which == 13) {
-        setTimeout(function() {
-          $('.word_to_guess').hide();
-        }, 1000);
-        word = this.value.toUpperCase();
-        console.log(word)
-        separateWord(word);
-        getLetter();
+  //select to human friend or AI by giving value to game_type
+  function selectOponent() {
+    $('li').bind('click', function() {
+      $('.hints').empty();
+      $('li').css('background-color', '');
+      $(this).css('background-color', 'rgb(101, 49, 94)');
+      if($(this).hasClass('friend')) {
+        game_type = 'friend';
+        aiOrHuman(game_type);
+        console.log(game_type);
+      } else if($(this).hasClass('ai')) {
+        game_type = 'ai';
+        aiOrHuman(game_type);
+        console.log(game_type);
       }
-    });
+    })
+  };
+
+  selectOponent();
+
+
+})
+
+function getWord() {
+  $('.word_to_guess').off().on('keypress', function(e) {
+    if(e.which == 13) {
+      setTimeout(function() {
+        $('.word_to_guess').hide();
+      }, 1000);
+      word = this.value.toUpperCase();
+      console.log(word)
+      separateWord(word);
+      getLetter();
+    }
+  });
+}
+
+  function aiOrHuman() {
+    if(game_type === 'ai') {
+      $('.word_to_guess').hide();
+      $('body').removeClass('menu-open');
+      RandomWord();
+    } else if(game_type === 'friend') {
+      $('.word_to_guess').show();
+      $('body').removeClass('menu-open');
+      getWord();
+    }
   }
+
+  aiOrHuman();
+// })
+
+
+
 // })
 
 function separateWord(word) {
