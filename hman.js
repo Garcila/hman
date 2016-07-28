@@ -95,7 +95,7 @@ function getWord() {
     if(e.which == 13) {
       setTimeout(function() {
         $('.word_to_guess').hide();
-      }, 1000);
+      }, 800);
       word = this.value.toUpperCase();
       console.log(word)
       separateWord(word);
@@ -105,6 +105,7 @@ function getWord() {
 }
 
   function aiOrHuman() {
+    $('.lines').attr('style', '');
     if(game_type === 'ai') {
       $('.word_to_guess').hide();
       $('body').removeClass('menu-open');
@@ -184,7 +185,7 @@ function getLetter() {
         // console.log('you found the word.  the word is ' + (word_array.join('')));
         won += 1;
         console.log('won: ' + won + ' - lost: ' + lost);
-        // $('.image').append('Correct, the word was: '+ '<br>' + word);
+        // $('.image').prepend(  word + '<br>' + 'is correct');
         $('.word_to_guess').show();
         $('.lines')
           .css('background-color', 'rgb(106, 28, 133)')
@@ -214,8 +215,6 @@ function getLetter() {
     $('.word_to_guess').val('').focus();
     $('.word_to_guess').hide();
     $('.hints').hide();
-
-    // $('.lines').empty();
     $('.Grid-cell')
       .css('transform', 'scale(' + 1 + ')')
       .css('background-color', '')
