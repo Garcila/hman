@@ -46,13 +46,15 @@ $(document).ready(function(){
     }).done(function (json) {
       $('.hints').empty();
       if(json.hasOwnProperty('noun')) {
-        $('.hints').append(json.noun.syn[rand(1,5)]);
+        $('.hints').append(json.noun.syn[rand(0,8)] || [0]);
       } else if(json.hasOwnProperty('verb')) {
-        $('.hints').append(json.verb.syn[rand(1,5)]);
+        $('.hints').append(json.verb.syn[rand(0,8)] || [0]);
       } else if(json.hasOwnProperty('adverb')) {
-        $('.hints').append(json.adverb.syn[rand(1,5)]);
+        $('.hints').append(json.adverb.syn[rand(0,8)] || [0]);
       } else if(json.hasOwnProperty('adjective')) {
-        $('.hints').append(json.adjective.syn[rand(1,5)]);
+        $('.hints').append(json.adjective.syn[rand(0,8)] || [0]);
+      } else if(json.hasOwnProperty()) {
+        $('.hints').append('Do not know');
       }
     }).fail(function(f) {
       $('.hints').append(" 404");  //if the thesaurus, as it often does, has no synonym, append a friendly 404
@@ -163,6 +165,10 @@ function getLetter() {
         console.log(lines);
       } else {
         error_count += 1;
+        $('.image div:nth-child(' + error_count + ')').hide();
+        if(error_count === 7) {
+          $('.image').append('NO MORE COLORS'+'<br>'+'<br>'+  'Ultraviolet' +'<br>'+'X-Rays' +'<br>'+' Gamma Rays' +'<br>'+'Cosmic Rays' +'<br>'+'is all that is left' +'<br>'+'<br>'+'  The word you were looking for was ' + word)
+        }
         console.log('error, letter ' + chosen_letter + ' is not on word');
         console.log(error_count);
       }
@@ -173,13 +179,18 @@ function getLetter() {
   }
 
   function compareWords() {
-    if(error_count < 6) {
+    if(error_count < 7) {
       if(lines.join('') === word_array.join('')) {
         // console.log('you found the word.  the word is ' + (word_array.join('')));
         won += 1;
         console.log('won: ' + won + ' - lost: ' + lost);
         // $('.image').append('Correct, the word was: '+ '<br>' + word);
         $('.word_to_guess').show();
+        $('.lines')
+          .css('background-color', 'rgb(106, 28, 133)')
+          .css('padding', '20px')
+          .css('border-radius', '4%')
+        $('.lines').prepend('Found word: ').addClass('lines-won')
         // getWord();
         playAgain();
         // endGame();
@@ -199,8 +210,10 @@ function getLetter() {
     error_count = 0;
     used_letters = [];
     index_chosen_letter= [];
+    $('.image').children().show;
     $('.word_to_guess').val('').focus();
     $('.word_to_guess').hide();
+    $('.hints').hide();
 
     // $('.lines').empty();
     $('.Grid-cell')
