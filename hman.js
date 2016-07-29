@@ -6,60 +6,117 @@ var won = 0;
 var lost = 0;
 var word_computer_generated;
 var game_type = 'friend';
+var game_level;
+var word_data;
 
 
 function rand(minimum_letters, maximum_letters) {
   return Math.floor(Math.random()*(maximum_letters-minimum_letters+1)+minimum_letters);
 }
 
-//function to get random word from API.  AI game
+//function to get random word from API.  AI game !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function RandomWord() {
-  var random_word_lenght = rand(7,3);
-  var requestStr = "http://randomword.setgetgo.com/get.php?len=" + random_word_lenght;
+  var random_word_frequency_easy = 'https://wordsapiv1.p.mashape.com/words/?hasDetails=typeOf&frequencyMin=6&frequencyMax=7&synonyms&random=true'
+  var random_word_frequency_medium = 'https://wordsapiv1.p.mashape.com/words/?hasDetails=typeOf&frequencyMin=3&frequencyMax=5&random=true';
+  var random_word_frequency_hard = 'https://wordsapiv1.p.mashape.com/words/?hasDetails=typeOf&frequencyMin=1&frequencyMax=2&random=true';
 
   $.ajax({
-    type: "GET",
-    url: requestStr,
-    dataType: "jsonp",
-    jsonpCallback: 'RandomWordComplete'
+      type: 'GET',
+      url: (function difficulty() {
+            if(game_level === 'hard') {
+              return random_word_frequency_hard
+            } else if(game_level === 'medium') {
+              return random_word_frequency_medium
+            } else {
+              return random_word_frequency_easy
+            }
+          }()),
+      data: {}, // Additional parameters here
+      dataType: 'json',
+      success: function(data) {
+        console.log((data.word));
+        word = (data.word).toUpperCase();
+        console.log(word);
+        console.log((data.results[0].definition));
+        console.log((data.results[0].synonyms));
+        console.log((data));
+        word_data = (data);
+        separateWord(word);
+        getLetter();
+        $('.hint').bind('click', function thesaurus() {
+          $('.hints').empty();
+          $('.hints').append(word_data.results[0].synonyms[(rand(0,2))]);
+        })
+      },
+      error: function(err) { alert(err); },
+      beforeSend: function(xhr) {
+      xhr.setRequestHeader("X-Mashape-Authorization", "hznNr7yF1Pmshdl9gk0G70l9yqjbp14ZeTdjsnMAll0VSZcGqF"); // Enter here your Mashape key
+      }
   });
 }
 
-function RandomWordComplete(data) {
-  word = data.Word.toUpperCase();
-  console.log(data.Word);
-  console.log(word);
-  separateWord(word);
-  getLetter();
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function to get random word from API.  AI game !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// function RandomWord() {
+//   var random_word_lenght = rand(7,3);
+//   var requestStr = "http://randomword.setgetgo.com/get.php?len=" + random_word_lenght;
+//
+//   $.ajax({
+//     type: "GET",
+//     url: requestStr,
+//     dataType: "jsonp",
+//     jsonpCallback: 'RandomWordComplete'
+//   });
+// }
+//
+// function RandomWordComplete(data) {
+//   word = data.Word.toUpperCase();
+//   console.log(data.Word);
+//   console.log(word);
+//   separateWord(word);
+//   getLetter();
+// }
+
 
 
 $(document).ready(function(){
   getWord();
 
   //function to get access Big Huge Thesaurus
-  $('.hint').bind('click', function thesaurus() {
-    $.ajax({
-      type: "GET",
-      url: "http://words.bighugelabs.com/api/2/583adec71311cc870422e3e327d9b364/" + word + "/json",
-      dataType: "json"
-    }).done(function (json) {
-      $('.hints').empty();
-      if(json.hasOwnProperty('noun')) {
-        $('.hints').append(json.noun.syn[rand(0,8)] || [0]);
-      } else if(json.hasOwnProperty('verb')) {
-        $('.hints').append(json.verb.syn[rand(0,8)] || [0]);
-      } else if(json.hasOwnProperty('adverb')) {
-        $('.hints').append(json.adverb.syn[rand(0,8)] || [0]);
-      } else if(json.hasOwnProperty('adjective')) {
-        $('.hints').append(json.adjective.syn[rand(0,8)] || [0]);
-      } else if(json.hasOwnProperty()) {
-        $('.hints').append('Do not know');
-      }
-    }).fail(function(f) {
-      $('.hints').append(" 404");  //if the thesaurus, as it often does, has no synonym, append a friendly 404
-    })
-  })
+  // $('.hint').bind('click', function thesaurus() {
+  //   $.ajax({
+  //     type: "GET",
+  //     url: "http://words.bighugelabs.com/api/2/583adec71311cc870422e3e327d9b364/" + word + "/json",
+  //     dataType: "json"
+  //   }).done(function (json) {
+  //     $('.hints').empty();
+  //     if(json.hasOwnProperty('noun')) {
+  //       $('.hints').append(json.noun.syn[rand(0,8)] || [0]);
+  //     } else if(json.hasOwnProperty('verb')) {
+  //       $('.hints').append(json.verb.syn[rand(0,8)] || [0]);
+  //     } else if(json.hasOwnProperty('adverb')) {
+  //       $('.hints').append(json.adverb.syn[rand(0,8)] || [0]);
+  //     } else if(json.hasOwnProperty('adjective')) {
+  //       $('.hints').append(json.adjective.syn[rand(0,8)] || [0]);
+  //     } else if(json.hasOwnProperty()) {
+  //       $('.hints').append('Do not know');
+  //     }
+  //   }).fail(function(f) {
+  //     $('.hints').append(" 404");  //if the thesaurus, as it often does, has no synonym, append a friendly 404
+  //   })
+  // })
 
   //reveals or hides side menu
   $('.menu-toggle').bind('click', function() {
