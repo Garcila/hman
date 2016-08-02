@@ -2,7 +2,7 @@
 <head>
   <html lang="eng">
   <meta charset="utf-8">
-  <title>Hang the hangman</title>
+  <title>Save the Rainbow</title>
   <link rel="stylesheet" type="text/css" href="hman.css">
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -16,11 +16,16 @@
         <li class="friend">PLAY AGAINST A FRIEND</li>
         <li class="ai">PLAY AGAINST THE AI</li>
         <li>DIFICULTY LEVEL</li>
-        <li>CONTACT ME</li>
+        <ul class="difficulty">
+          <li class="easy">Easy</li>
+          <li>Medium</li>
+          <li>Hard</li>
+        </ul>
+        <li><a href="mailto:germanarcila@gmail.com?Subject=SaveTheRainbowUser" class="mail">CONTACT ME</a></li>
     </div>
 
     <section class='title'>
-      <span>Help the Rainbow</span>
+      <span>Save the Rainbow</span>
       <a href="#" class="menu-toggle">&#9776</a>
     </section>
     <section class='word'>
@@ -62,17 +67,23 @@
     </div>
 
     <div class="image">
-      <div  class="one"></div>
-      <div  class="two"></div>
-      <div  class="three"></div>
-      <div  class="four"></div>
-      <div  class="five"></div>
-      <div  class="six"></div>
-      <div  class="seven"></div>
+      <div  class="one" class="colors"></div>
+      <div  class="two" class="colors"></div>
+      <div  class="three" class="colors"></div>
+      <div  class="four" class="colors"></div>
+      <div  class="five" class="colors"></div>
+      <div  class="six" class="colors"></div>
+      <div  class="seven" class="colors"></div>
     </div>
   </div>
 
   <div class="hint-word">
+    <div>
+      <div class="def">
+        Def
+      </div>
+      <div class="def_helper"></div>
+    </div>
     <div class="help">
       <div class="hint">
         Hint

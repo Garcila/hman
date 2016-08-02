@@ -1,0 +1,5 @@
+{
+  "in": ["pre_hman.css"],
+  "out": "hman.css",
+  "browsers": ["last 3 versions", "Android 2.3"]
+}
