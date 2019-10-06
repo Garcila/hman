@@ -1,0 +1,18 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#2dbcbe",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#b42bb2",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "titleBar.activeBackground": "#239395",
+    "titleBar.inactiveBackground": "#23939599",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveForeground": "#e7e7e799",
+    "statusBar.background": "#239395",
+    "statusBarItem.hoverBackground": "#2dbcbe",
+    "statusBar.foreground": "#e7e7e7"
+  },
+  "peacock.color": "#239395",
+  "liveServer.settings.port": 5501
+}

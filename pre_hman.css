@@ -19,7 +19,7 @@ body {
 header {
   display: flex;
   flex-direction: column;
-  background-color:rgb(69, 59, 68);
+  background-color: rgb(69, 59, 68);
 }
 
 .menu {
@@ -93,7 +93,7 @@ li:focus {
   background-color: rgb(69, 54, 67);
 }
 
-.difficulty li{
+.difficulty li {
   align-items: center;
   font-size: 1.4em;
   background-color: rgb(66, 48, 74);
@@ -115,8 +115,8 @@ li:focus {
   color: white;
   min-height: 120px;
   background-color: rgb(69, 59, 68);
-  padding-left: 10px;;
-  justify-content: space-between;;
+  padding-left: 10px;
+  justify-content: space-between;
   align-items: flex-end;
   font-family: 'Pacifico', cursive;
 }
@@ -140,7 +140,7 @@ input {
 .game {
   display: flex;
   background-color: pink;
-  flex: 1 1 auto;;
+  flex: 1 1 auto;
 }
 
 .Grid {
@@ -174,7 +174,7 @@ input {
 .image {
   display: flex;
   flex-direction: column;
-    background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
   flex: 3;
   font-variant: small-caps;
   font-size: 2em;
@@ -183,24 +183,23 @@ input {
   justify-content: space-around;
   padding: 30px;
   -webkit-filter: grayscale(20%);
-  -moz-filter:    grayscale(20%);
-  -ms-filter:     grayscale(20%);
-  -o-filter:      grayscale(20%);
+  -moz-filter: grayscale(20%);
+  -ms-filter: grayscale(20%);
+  -o-filter: grayscale(20%);
 }
 
-
 .one {
-  background-color: rgb(255,0,0); // red
+  background-color: rgb(255, 0, 0); // red
   flex: 1;
   flex: 1 0 0;
   border-radius: 1%;
-  -webkit-box-shadow: inset 0px -50px 159px -69px rgba(184,0,0,1);
-  -moz-box-shadow: inset 0px -50px 159px -69px rgba(184,0,0,1);
-  box-shadow: inset 0px -50px 159px -69px rgba(184,0,0,1);
+  -webkit-box-shadow: inset 0px -50px 159px -69px rgba(184, 0, 0, 1);
+  -moz-box-shadow: inset 0px -50px 159px -69px rgba(184, 0, 0, 1);
+  box-shadow: inset 0px -50px 159px -69px rgba(184, 0, 0, 1);
 }
 
 .two {
-  background-color: rgb(255,127,0); // orange
+  background-color: rgb(255, 127, 0); // orange
   flex: 1;
   border-radius: 1%;
   flex: 1 0 0;
@@ -210,9 +209,9 @@ input {
 }
 
 .three {
-  background-color: rgb(255,255,0); // yellow
+  background-color: rgb(255, 255, 0); // yellow
   flex: 1;
-  border-radius:10%;
+  border-radius: 10%;
   flex: 1 0 0;
   border-radius: 1%;
   -webkit-box-shadow: inset 0px -50px 159px -69px rgba(187, 187, 4, 1);
@@ -221,7 +220,7 @@ input {
 }
 
 .four {
-  background-color: rgb(0,255,0); // green
+  background-color: rgb(0, 255, 0); // green
   flex: 1 0 0;
   flex: 1;
   border-radius: 1%;
@@ -231,7 +230,7 @@ input {
 }
 
 .five {
-  background-color: rgb(0,0,255); // blue
+  background-color: rgb(0, 0, 255); // blue
   flex: 1 0 0;
   flex: 1;
   border-radius: 1%;
@@ -241,7 +240,7 @@ input {
 }
 
 .six {
-  background-color: rgb(75,0,130); // indigo
+  background-color: rgb(75, 0, 130); // indigo
   flex: 1 0 0;
   flex: 1;
   border-radius: 1%;
@@ -251,7 +250,7 @@ input {
 }
 
 .seven {
-  background-color: rgb(148,0,211); // violet
+  background-color: rgb(148, 0, 211); // violet
   flex: 1 0 0;
   flex: 1;
   border-radius: 1%;
@@ -275,7 +274,7 @@ input {
 
 .lines {
   padding-left: 10px;
-  }
+}
 
 .lines-won {
   padding-left: 50px;
@@ -288,7 +287,8 @@ input {
   justify-content: space-around;
 }
 
-.hint, .def {
+.hint,
+.def {
   background-color: rgb(94, 77, 105);
   padding: 10px 20px 10px 20px;
   border-style: solid;
@@ -299,7 +299,8 @@ input {
   font-size: 0.7em;
 }
 
-.hints, .def_helper {
+.hints,
+.def_helper {
   font-size: 0.6em;
   justify-content: center;
   padding-top: 10px;
@@ -312,13 +313,15 @@ footer {
   background-color: rgb(74, 67, 78);
 }
 
-@media (min-width:1000px) {
+@media (min-width: 1000px) {
   body {
     font-size: 1em;
     max-width: 800px;
   }
 
-  .grid, .word_to_guess, .div_lines {
+  .grid,
+  .word_to_guess,
+  .div_lines {
     font-size: 2em;
   }
 
